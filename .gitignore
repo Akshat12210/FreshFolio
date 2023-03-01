@@ -1,0 +1,17 @@
+node_modules/
+bundle.js
+npm-debug.log
+/.pnp
+.pnp.js
+
+/.idea
+/public
+
+.env
+.passport.js
+.DS_Store
+
+build/
+dist/
+client/.parcel-cache
+
