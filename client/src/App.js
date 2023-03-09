@@ -12,7 +12,6 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/findtalent" element={<FindTalent />} />
         <Route path="/findwork" element={<FindWork />} />
-        {/* <Route path="/fixtures" element={<Fixtures />} /> */}
         <Route path="*" element={<NoPage />} />             
       </Routes>
     </BrowserRouter>
