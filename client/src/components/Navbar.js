@@ -6,8 +6,9 @@ import vrsvg from '../assets/portfolio.svg'
 const navigation = [
   { name: 'Home', href: '/', current: true },
   // { name: 'Live', href: '/live', current: false },
-  { name: 'Find Talent', href: '/findtalent', current: false },
+  { name: 'Find Talent', href: '/findtalent', current: true },
   { name: 'Find Work', href: '/findwork', current: false },
+  // { name: 'SignIn', href: '/SignIn', current: false }
 ]
 
 function classNames(...classes) {
@@ -25,7 +26,7 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <Disclosure as="nav" className="bg-[#fffffe]">
+    <Disclosure as="nav" className="bg-[#d1d1e9]">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -79,18 +80,20 @@ export default function Navbar() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button> */}
-                <button
+                <Link
+                to="/SignIn"
                   type='button'
                   className='font-semibold text-gray-700 m-1 mr-5'
                 >
                   Sign In
-                </button>
-                <button
+                </Link>
+                <Link
+                to="/Join"
                   type='button'
                   className='font-semibold text-gray-700 m-1 border-2 rounded-md px-4 py-1 border-black hover:bg-[#6246ea] hover:text-[#fffffe] hover:border-[#fffffe]'
                 >
                   Join
-                </button>
+                </Link>
 
               </div>
             </div>
