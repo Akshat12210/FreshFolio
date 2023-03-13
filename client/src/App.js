@@ -6,6 +6,7 @@ import FindWork from './pages/FindWork';
 import NoPage from './pages/NoPage';
 import SignIn from './pages/LogIn';
 import Join from './pages/Join';
+import Clientdash from './pages/Clientdash';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/findwork" element={<FindWork />} />
         <Route path="*" element={<NoPage />} /> 
         <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/Join" element={<Join />} />             
+        <Route path="/Join" element={<Join />} /> 
+        <Route path="/Clientdash" element={<Clientdash />} />             
       </Routes>
     </BrowserRouter>
   )
