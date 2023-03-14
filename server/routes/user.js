@@ -38,7 +38,7 @@ console.log(req.body)
 });
 
 // Route for user sign-in
-router.post('/login', (req, res, next) => {
+router.post('/login', async (req, res, next) => {
     console.log(req.body)
   let fetchedUser;
   // Find the user in the database by email
@@ -51,7 +51,7 @@ router.post('/login', (req, res, next) => {
       }
       // Compare the password entered with the hashed password in the database
       fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
+      bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
       if (!result) {
@@ -62,7 +62,7 @@ router.post('/login', (req, res, next) => {
       // Generate a JWT token with the user's id and email
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
-        process.env.JWT_KEY,
+        "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY3ODc1ODI5MCwiaWF0IjoxNjc4NzU4MjkwfQ.JgOmfxlF2t6F8Z696j5AGNdmg_w8IfmNaXHCuh6Oq-8",
         { expiresIn: '1h' }
       );
       res.status(200).json({
