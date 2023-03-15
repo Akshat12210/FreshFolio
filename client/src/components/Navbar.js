@@ -94,13 +94,13 @@ export default function Navbar() {
                 >
                   Join
                 </Link>
-                <Link
+                {/* <Link
                 to="/Clientdash"
                   type='button'
                   className='font-semibold text-gray-700 m-1 mr-5'
                 >
                   Client Dashboard
-                </Link>
+                </Link> */}
 
               </div>
             </div>
