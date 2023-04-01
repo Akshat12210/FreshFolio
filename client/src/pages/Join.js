@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CheckIcon } from '@heroicons/react/20/solid'
 import { BanknotesIcon } from '@heroicons/react/24/outline';
 import joinPage from '../assets/JoinPage.svg';
+import { useNavigate } from 'react-router-dom';
 
 const includedFeatures = [
   'Private forum access',
@@ -11,7 +12,10 @@ const includedFeatures = [
 ]
 const Join = () => {
   const [selectedOption, setSelectedOption] = useState('');
-
+  const navigate = useNavigate();
+  const nextLogin = (value) => {
+    navigate('/SignUp', {state: {type:value}});
+  }
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -41,7 +45,7 @@ const Join = () => {
               </div>
             </div>
             { selectedOption !== '' ? (
-              <button className="bg-indigo-600 hover:bg-indigo-500 text-white mb-2  font-semibold py-2 px-4 rounded mt-4">
+              <button className="bg-indigo-600 hover:bg-indigo-500 text-white mb-2  font-semibold py-2 px-4 rounded mt-4" onClick={() => nextLogin(selectedOption)}>
               {selectedOption === 'Client' ? 'Join as a Client' : 'Apply as a freelancer'}
             </button>
             ) : (<></>)

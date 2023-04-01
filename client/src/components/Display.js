@@ -12,9 +12,9 @@ export default function Display() {
         <div className="bg-[#fffffe]">
             <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 py-10 px-4 sm:px-6 sm:py-20 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
                 <div>
-                    <h2 style={{ lineHeight: 'normal' }} className="text-5xl font-bold tracking-tight text-[#2b2c34] sm:text-5xl">Join Forces with Experienced Freelancers and Boost Your Skills on Freshfolio</h2>
+                    <h2 style={{ lineHeight: 'normal' }} className="text-5xl  tracking-tight text-[#2b2c34] sm:text-5xl">Join Forces with Experienced Freelancers and Boost Your Skills on Freshfolio</h2>
                     <Link
-                        to="/"
+                        to="/join"
                         type='button'
                         className='mt-5 py-2.5 px-3.5  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg'
                     >

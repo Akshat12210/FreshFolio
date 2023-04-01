@@ -18,8 +18,8 @@ console.log(req.body)
         email: req.body.email,
         password: hash,
         username:req.body.username,
-        first_name:req.body.firstname,
-        last_name:req.body.lastname,
+        first_name:req.body.firstName,
+        last_name:req.body.lastName,
         account_type:req.body.account_type
       });
       // Save the user to the database

@@ -5,6 +5,7 @@ import FindTalent from './pages/FindTalent';
 import FindWork from './pages/FindWork';
 import NoPage from './pages/NoPage';
 import SignIn from './pages/LogIn';
+import SignUp from './pages/SignUp';
 import Join from './pages/Join';
 import Clientdash from './pages/Clientdash';
 
@@ -15,10 +16,11 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/findtalent" element={<FindTalent />} />
         <Route path="/findwork" element={<FindWork />} />
-        <Route path="*" element={<NoPage />} /> 
         <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Join" element={<Join />} /> 
         <Route path="/Clientdash" element={<Clientdash />} />             
+        <Route path="*" element={<NoPage />} /> 
       </Routes>
     </BrowserRouter>
   )

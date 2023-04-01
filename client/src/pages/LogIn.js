@@ -1,113 +1,112 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-
+import { useEffect } from 'react';
+import { Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+import portfolio from '../assets/portfolio.svg'
+import { Link } from 'react-router-dom';
 export default function LogIn() {
+  const navigate = useNavigate();
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
+      <Link to="/">
+        <h2 className='text-bold text-2xl mx-5 mt-5'>FreshFolio</h2>
+      </Link>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md space-y-8  shadow-md p-10 rounded bg-white ">
           <div>
             <img
               className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src={portfolio}
               alt="Your Company"
             />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <h2 className="mt-6 text-center text-3xl  tracking-tight text-gray-900">
               Log in to your account
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              {/* Or{' '} */}
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                {/* start your 14-day free trial */}
-              </a>
-            </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
+          <div>
+            <Formik
+              initialValues={{ email: '', password: '', rememberMe:false }}
+              validate={values => {
+                const errors = {};
+                if (!values.email) {
+                  errors.email = 'Email Required';
+                } else if (
+                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                ) {
+                  errors.email = 'Invalid email address';
+                }
+                return errors;
+              }}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                setTimeout(() => {
+                  console.log(values);
+                  setSubmitting(false);
+                  // resetForm();
+                }, 400);
+              }}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+              }) => (
+                <form onSubmit={handleSubmit}>
+                  <input
+                    className='block border border-grey-light w-full p-3 rounded mb-1'
+                    type="email"
+                    name="email"
+                    placeholder='email@address.com'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                  <p className='text-red-600 mb-2'>{errors.email && touched.email && errors.email}</p>
+                  <input
+                    className='block border border-grey-light w-full p-3 mb-3 rounded'
+                    type="password"
+                    name="password"
+                    placeholder='password'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                  />
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <input
+                        id="remember-me"
+                        name="rememberMe"
+                        type="checkbox"
+                        onChange={handleChange}
+                        value={values.rememberMe}
+                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      />
+                      <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                        Remember me
+                      </label>
+                    </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-                </span>
-                Log in
-              </button>
-            </div>
-          </form>
+                    <div className="text-sm">
+                      <Link to="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        Forgot your password?
+                      </Link>
+                    </div>
+                  </div>
+                  <button
+                    className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-700 focus:outline-none my-4"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Log in
+                  </button>
+                </form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </>
