@@ -8,6 +8,8 @@ import SignIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import Join from './pages/Join';
 import Clientdash from './pages/Clientdash';
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
 
 function App() {
   return (

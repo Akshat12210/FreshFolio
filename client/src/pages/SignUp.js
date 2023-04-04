@@ -1,8 +1,19 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik';
-
+import { Notyf } from 'notyf';
 const SignUp = () => {
+    const notyf = new Notyf({
+        types: [
+            {
+                type: "loading",
+                background: "black",
+                duration: 2000,
+                dismissible: true,
+            },
+            //other custom toasts if any
+        ],
+    });
     const location = useLocation();
     const navigate = useNavigate();
     const stateData = location.state;
@@ -41,6 +52,10 @@ const SignUp = () => {
                             onSubmit={(values, { setSubmitting, resetForm }) => {
                                 setTimeout(() => {
                                     values["account_type"] = stateData.type;
+                                    notyf.open({
+                                        type: "loading",
+                                        message: "Fetching data...",
+                                    });
                                     console.log(values);
                                     setSubmitting(false);
                                     // resetForm();
@@ -123,7 +138,7 @@ const SignUp = () => {
                                         type="submit"
                                         disabled={isSubmitting}
                                     >
-                                        Submit
+                                        Sign Up
                                     </button>
                                 </form>
                             )}
