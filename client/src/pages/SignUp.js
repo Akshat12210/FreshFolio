@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Formik } from 'formik';
 import { Notyf } from 'notyf';
+import axios from 'axios';
 const SignUp = () => {
     const notyf = new Notyf({
         types: [
@@ -10,6 +11,10 @@ const SignUp = () => {
                 background: "black",
                 duration: 2000,
                 dismissible: true,
+                position: {
+                    x: 'center',
+                    y: 'top',
+                },
             },
             //other custom toasts if any
         ],
@@ -52,13 +57,33 @@ const SignUp = () => {
                             onSubmit={(values, { setSubmitting, resetForm }) => {
                                 setTimeout(() => {
                                     values["account_type"] = stateData.type;
-                                    notyf.open({
-                                        type: "loading",
-                                        message: "Fetching data...",
-                                    });
-                                    console.log(values);
-                                    setSubmitting(false);
-                                    // resetForm();
+                                    axios.post('http://localhost:3001/api/user/signup', values)
+                                        .then(response => {
+                                            console.log(response.data);
+                                            notyf.success({
+                                                duration: 2000,
+                                                dismissible: true,
+                                                position: {
+                                                    x: 'center',
+                                                    y: 'top',
+                                                },
+                                                message: "Sign Up Successfull",
+                                            });
+                                            console.log(values);
+                                        })
+                                        .catch(error => {
+                                            notyf.error({
+                                                duration: 2000,
+                                                dismissible: true,
+                                                position: {
+                                                    x: 'center',
+                                                    y: 'top',
+                                                },
+                                                message: error.response.data.error,
+                                            });
+                                            console.error(error)
+                                            resetForm();
+                                        });
                                 }, 400);
                             }}
                         >

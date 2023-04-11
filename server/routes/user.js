@@ -9,18 +9,27 @@ const router = express.Router();
 
 // Route for user sign-up
 router.post('/signup', (req, res, next) => {
-console.log(req.body)
+  console.log(req.body)
   // Hash the password
+  if (!req.body.username || !req.body.email || !req.body.password) {
+    return res.status(400).json({ error: 'Please provide username, email and password' });
+  }
+  const email = req.body.email;
+  const existingUser = User.findOne({ email });
+  console.log(existingUser)
+  // if (existingUser) {
+  //   return res.status(409).json({ error: 'User with this email already exists' });
+  // }
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
       // Create a new user object
       const user = new User({
         email: req.body.email,
         password: hash,
-        username:req.body.username,
-        first_name:req.body.firstName,
-        last_name:req.body.lastName,
-        account_type:req.body.account_type
+        username: req.body.username,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        account_type: req.body.account_type
       });
       // Save the user to the database
       user.save()
@@ -30,7 +39,7 @@ console.log(req.body)
           });
         })
         .catch(err => {
-          res.status(500).json({
+          res.status(400).json({
             error: err
           });
         });

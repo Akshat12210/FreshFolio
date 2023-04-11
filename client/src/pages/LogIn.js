@@ -4,8 +4,25 @@ import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import portfolio from '../assets/portfolio.svg'
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { Notyf } from 'notyf';
 export default function LogIn() {
   const navigate = useNavigate();
+  const notyf = new Notyf({
+    types: [
+      {
+        type: "loading",
+        background: "black",
+        duration: 2000,
+        dismissible: true,
+        position: {
+          x: 'center',
+          y: 'top',
+        },
+      },
+      //other custom toasts if any
+    ],
+  });
   return (
     <>
       <Link to="/">
@@ -25,7 +42,7 @@ export default function LogIn() {
           </div>
           <div>
             <Formik
-              initialValues={{ email: '', password: '', rememberMe:false }}
+              initialValues={{ email: '', password: '', rememberMe: false }}
               validate={values => {
                 const errors = {};
                 if (!values.email) {
@@ -40,9 +57,36 @@ export default function LogIn() {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setTimeout(() => {
                   console.log(values);
-                  setSubmitting(false);
-                  // resetForm();
+                  axios.post('http://localhost:3001/api/user/login', values)
+                    .then(response => {
+                      console.log(response);
+                      notyf.success({
+                        duration: 2000,
+                        dismissible: true,
+                        position: {
+                          x: 'center',
+                          y: 'top',
+                        },
+                        message: "Login Successfull",
+                      });
+                      console.log(values);
+                      navigate("/Clientdash");
+                    })
+                    .catch(error => {
+                      notyf.error({
+                        duration: 2000,
+                        dismissible: true,
+                        position: {
+                          x: 'center',
+                          y: 'top',
+                        },
+                        message: error.response.data.error,
+                      });
+                      console.error(error)
+                      resetForm();
+                    });
                 }, 400);
+                setSubmitting(false);
               }}
             >
               {({
@@ -108,7 +152,7 @@ export default function LogIn() {
             </Formik>
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }

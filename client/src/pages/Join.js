@@ -33,12 +33,12 @@ const Join = () => {
           </div>
           <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-10 lg:mx-0 lg:max-w-none justify-center text-center">
             <div className="flex flex-wrap">
-              <div className="w-full md:w-1/2 p-4 cursor-pointer"  onClick={() => setSelectedOption('Client')}>
-                <div className={`rounded-2xl ${selectedOption==='Client'? "bg-indigo-50" :"bg-gray-50"  } py-10 text-center ring-1 ring-inset ring-gray-900/5`}>
+              <div className="w-full md:w-1/2 p-4 cursor-pointer"  onClick={() => setSelectedOption('client')}>
+                <div className={`rounded-2xl ${selectedOption==='client'? "bg-indigo-50" :"bg-gray-50"  } py-10 text-center ring-1 ring-inset ring-gray-900/5`}>
                 <p className='text-2xl tracking-tight text-gray-900'>I'm a Client, hiring for a project</p>
                 </div>
               </div>
-              <div className="w-full md:w-1/2 p-4 cursor-pointer"  onClick={() => setSelectedOption('Freelancer')}>
+              <div className="w-full md:w-1/2 p-4 cursor-pointer"  onClick={() => setSelectedOption('freelancer')}>
                 <div className={`rounded-2xl ${selectedOption==='Freelancer'? "bg-indigo-50" :"bg-gray-50"  } py-10 text-center ring-1 ring-inset ring-gray-900/5`}>
                 <p className='text-2xl tracking-tight text-gray-900'>I'm a freelancer looking for work</p>
                 </div>
@@ -46,7 +46,7 @@ const Join = () => {
             </div>
             { selectedOption !== '' ? (
               <button className="bg-indigo-600 hover:bg-indigo-500 text-white mb-2  py-2 px-4 rounded mt-4" onClick={() => nextLogin(selectedOption)}>
-              {selectedOption === 'Client' ? 'Join as a Client' : 'Apply as a freelancer'}
+              {selectedOption === 'client' ? 'Join as a Client' : 'Apply as a freelancer'}
             </button>
             ) : (<></>)
               
