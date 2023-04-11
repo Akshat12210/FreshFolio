@@ -69,8 +69,9 @@ export default function LogIn() {
                         },
                         message: "Login Successfull",
                       });
-                      console.log(values);
-                      navigate("/Clientdash");
+                      if(response.data.account_type=='freelancer') navigate("/Clientdash");
+                      else navigate("/Clientdash");
+
                     })
                     .catch(error => {
                       notyf.error({

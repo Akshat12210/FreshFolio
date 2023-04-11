@@ -74,12 +74,14 @@ router.post('/login', async (req, res, next) => {
       }
       // Generate a JWT token with the user's id and email
       const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
+        { email: fetchedUser.email, userId: fetchedUser._id, account_type: fetchedUser.account_type },
         "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY3ODc1ODI5MCwiaWF0IjoxNjc4NzU4MjkwfQ.JgOmfxlF2t6F8Z696j5AGNdmg_w8IfmNaXHCuh6Oq-8",
         { expiresIn: '1h' }
       );
       res.status(200).json({
         message: 'Auth successful',
+        userId: fetchedUser._id,
+        account_type: fetchedUser.account_type,
         token: token
       });
     })
