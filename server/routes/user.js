@@ -8,6 +8,23 @@ const User = require('../models/user');
 const router = express.Router();
 
 // Route for user sign-up
+
+
+
+router.get('/:id', async (req, res, next) => {
+  const _id = req.params.id;
+  try {
+    const user = await User.findById(_id);
+    if (!user) {
+      return res.status(404).send("User does not exist");
+    }
+    res.send(user);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+})
+
+
 router.post('/signup', async (req, res, next) => {
   try {
     const { username, email, password, firstName, lastName, account_type } = req.body;
