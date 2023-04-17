@@ -13,6 +13,7 @@ import Jobs from './pages/Jobs';
 import Apply from './pages/Apply';
 import Layout from './shared/Layout';
 import Details from './components/Details';
+import Profile from './pages/Profile';
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 
@@ -31,7 +32,7 @@ function App() {
           <Route path="jobs" element={<Jobs />} />
           <Route path="apply/:id" element={<Apply />} />
           <Route path="details/:id" element={<Details />} />
-          <Route path="profile" element={<Clientdash />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="analysis" element={<Clientdash />} />
           <Route path="accounting" element={<Clientdash />} />
           <Route path="projects" element={<Clientdash />} />

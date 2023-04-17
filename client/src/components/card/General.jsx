@@ -3,7 +3,7 @@ import React from "react";
 
 const General = () => {
   return (
-    <Card extra={"w-full h-1/2 p-3"}>
+    <Card extra={"w-full h-full p-3"}>
       {/* Header */}
 
       <div className="w-full mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
