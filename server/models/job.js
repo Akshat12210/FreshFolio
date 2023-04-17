@@ -26,7 +26,7 @@ const jobSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  created_at: {
+  created_at: { 
     type: Date,
     default: Date.now
   },
@@ -53,6 +53,18 @@ const jobSchema = new mongoose.Schema({
   questions: [{
     type: String
   }]
+});
+proposals: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Proposal'
+}];
+
+
+jobSchema.virtual('proposalCount', {
+  ref: 'Proposal',
+  localField: '_id',
+  foreignField: 'job_id',
+  count: true
 });
 
 module.exports = mongoose.model('Job', jobSchema);

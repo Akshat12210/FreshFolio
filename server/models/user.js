@@ -9,9 +9,12 @@ const userSchema = new mongoose.Schema({
   last_name: { type: String, required: true },
   bio: { type: String },
   profile_picture: { type: String },
+  profile_created: { type: Boolean, default: false },
+
   account_type: { type: String, enum: ['freelancer', 'client'], required: true },
   created_at: { type: Date, default: Date.now },
-  updated_at: { type: Date, default: Date.now }
+  updated_at: { type: Date, default: Date.now },
+ 
 });
 
 const User = mongoose.model('User', userSchema);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const clientProfileSchema = new mongoose.Schema({
-  id: { type: String, required: true, unique: true },
+  // id: { type: String, required: true, unique: true },
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   company_name: { type: String, required: true },
   website: { type: String },

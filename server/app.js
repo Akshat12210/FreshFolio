@@ -5,6 +5,15 @@ const app = express();
 const url = "mongodb+srv://deeksha:xlwtfH6vU5gIf7Tj@cluster0.3a5fexm.mongodb.net/?retryWrites=true&w=majority";
 const userRoutes = require('./routes/user');
 const jobRoutes = require('./routes/job_post');
+const clientprofile=require('./routes/client_profile');
+const freelancerprofile=require('./routes/freelancer_profile');
+const client_matrix=require('./routes/client_matrix');
+const proposal=require('./routes/proposal');
+const team=require('./routes/team');
+
+
+
+
 
 const connectionParams = {
   useNewUrlParser: true,
@@ -19,6 +28,13 @@ app.use(express.json());
 app.use(cors());
 app.use('/api/user', userRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/client_profile', clientprofile);
+app.use('/api/freelancer_profile', freelancerprofile);
+app.use('/api/proposal', proposal);
+app.use('/api/team', team);
+
+
+
 
 app.get('/api/data', (req, res) => {
   const data = {

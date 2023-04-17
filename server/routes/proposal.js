@@ -1,52 +1,52 @@
 const express = require('express');
 const router = express.Router();
-const Job = require('../models/job');
+const Job = require('../models/proposal');
+const Proposal = require('../models/proposal');
 
-// Create a new job
+// Create a new proposal 
 router.post('/', async (req, res) => {
   try {
-    const job = new Job({
-        client_id:req.body.client_id,
-        title:req.body.title,
-        description:req.body.description ,
-        budget: req.body.budget,
-        category: req.body.category,
-        deadline: new Date('2023-04-01'),
-        skills_required: ['Some skill', 'Another skill'],
-        status: 'open'
+    const proposal = new Proposal({
+        job_id:req.body.job_id,
+        freelancer_id:req.body.freelancer_id,
+        amount:req.body.amount ,
+        delivery_time: req.body.delivery_time,
+        description: req.body.description,
+        answer:req.body.answer,
+        
     });
-    await job.save();
-    res.status(201).send(job);
+    await proposal.save();
+    res.status(201).send(proposal.id);
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-// Get all jobs
+// // Get all proposals
 router.get('/', async (req, res) => {
   try {
-    const jobs = await Job.find();
-    res.send(jobs);
+    const proposals = await proposal.find();
+    res.send(proposals);
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
-// Get a job by ID
+// // Get a job by ID
 router.get('/:id', async (req, res) => {
   const _id = req.params.id;
   try {
-    const job = await Job.findById(_id);
-    if (!job) {
+    const proposal = await Proposal.findById(_id);
+    if (!proposal) {
       return res.status(404).send();
     }
-    res.send(job);
+    res.send(proposal);
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
-// Update a job by ID
+// // Update a job by ID
 router.patch('/:id', async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['title', 'description', 'budget', 'category', 'deadline', 'freelancer_id', 'skills_required', 'status', 'bids', 'questions'];
