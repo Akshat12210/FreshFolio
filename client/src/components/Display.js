@@ -1,18 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import img1 from '../assets/img_1.svg';
-
+import Navbar from './Navbar/HomeNavbar';
 import Card from './Card';
-// Freshfolio: Where freelancers of all levels can find support, growth, and success
-{/* <p className="mt-4 text-[#2b2c34]">
-            Freshfolio's team-based approach to freelancing offers new and aspiring freelancers a supportive environment to gain valuable experience and build skills. You don't need to be an expert to get started - join a team and work with experienced freelancers to complete projects and learn from their expertise. Build your portfolio, network, and jumpstart your freelancing career with Freshfolio.
-            </p> */}
+
 export default function Display() {
     return (
         <div className="bg-[#fffffe]">
+            <Navbar
+                isSticky={false}
+                isInvisibleOnTop={false}
+                showSocial={false}
+                showRegisterBtn={true}
+            />
             <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 py-10 px-4 sm:px-6 sm:py-20 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
                 <div>
-                    <h2 style={{ lineHeight: 'normal' }} className="text-5xl  tracking-tight text-[#2b2c34] sm:text-5xl">Join Forces with Experienced Freelancers and Boost Your Skills on Freshfolio</h2>
+                    <h2 style={{ lineHeight: 1.3  }}  className="text-5xl font-semibold tracking-tight text-[#2b2c34] sm:text-5xl">Join Forces with Experienced Freelancers and Boost Your Skills on Freshfolio</h2>
                     <Link
                         to="/join"
                         type='button'
@@ -32,15 +35,14 @@ export default function Display() {
                     />
                 </div>
             </div>
-
             <div className="bg-[#fffffe]" id='about'>
                 <div className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
                     <h2 className=" text-black ">
                         <span className="font-extrabold text-3xl block sm:text-5xl">
-                        About Us
+                            About Us
                         </span>
                         <span className="mt-5 px-48 text-xl font-semibold block text-[#2b2c34]">
-                        Freshfolio's team-based approach to freelancing offers new and aspiring freelancers a supportive environment to gain valuable experience and build skills. You don't need to be an expert to get started - join a team and work with experienced freelancers to complete projects and learn from their expertise. Build your portfolio, network, and jumpstart your freelancing career with Freshfolio.
+                            Freshfolio's team-based approach to freelancing offers new and aspiring freelancers a supportive environment to gain valuable experience and build skills. You don't need to be an expert to get started - join a team and work with experienced freelancers to complete projects and learn from their expertise. Build your portfolio, network, and jumpstart your freelancing career with Freshfolio.
                         </span>
                     </h2>
                 </div>

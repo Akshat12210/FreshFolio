@@ -31,8 +31,9 @@ const SignUp = () => {
 
     return (
         <div className="bg-grey-lighter min-h-screen flex flex-col">
-            <Link to="/">
-                <h2 className='text-bold text-2xl mx-5 mt-5'>FreshFolio</h2>
+            <Link to="/" className='flex font-semibold text-3xl'>
+                <h2 className='ml-5 mt-5'>Fresh</h2>
+                <h2 className='mt-5 text-[#6246ea]'>Folio</h2>
             </Link>
             <div className="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
@@ -70,6 +71,7 @@ const SignUp = () => {
                                                 message: "Sign Up Successfull",
                                             });
                                             console.log(values);
+                                            navigate("/SignIn")
                                         })
                                         .catch(error => {
                                             notyf.error({
@@ -168,6 +170,13 @@ const SignUp = () => {
                                 </form>
                             )}
                         </Formik>
+                        <hr className='my-5'/>
+            <div className="text-sm text-center">
+                Already have an account?{" "} 
+              <Link to="/Signin" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Login
+              </Link>
+            </div>
                     </div>
                 </div>
             </div>

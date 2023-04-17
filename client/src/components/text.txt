@@ -1,0 +1,4 @@
+// Freshfolio: Where freelancers of all levels can find support, growth, and success
+{/* <p className="mt-4 text-[#2b2c34]">
+            Freshfolio's team-based approach to freelancing offers new and aspiring freelancers a supportive environment to gain valuable experience and build skills. You don't need to be an expert to get started - join a team and work with experienced freelancers to complete projects and learn from their expertise. Build your portfolio, network, and jumpstart your freelancing career with Freshfolio.
+            </p> */}

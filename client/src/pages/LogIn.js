@@ -25,11 +25,12 @@ export default function LogIn() {
   });
   return (
     <>
-      <Link to="/">
-        <h2 className='text-bold text-2xl mx-5 mt-5'>FreshFolio</h2>
+      <Link to="/" className='flex font-semibold text-3xl'>
+        <h2 className='ml-5 mt-5'>Fresh</h2>
+        <h2 className='mt-5 text-[#6246ea]'>Folio</h2>
       </Link>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8  shadow-md p-10 rounded bg-white ">
+        <div className="w-full max-w-md space-y-8  shadow-lg p-10 rounded bg-white ">
           <div>
             <img
               className="mx-auto h-12 w-auto"
@@ -69,9 +70,12 @@ export default function LogIn() {
                         },
                         message: "Login Successfull",
                       });
-                      if(response.data.account_type=='freelancer') navigate("/Clientdash");
-                      else navigate("/Clientdash");
-
+                      // if (response.data.account_type == 'freelancer') navigate("/Clientdash");
+                      // else navigate("/Clientdash");
+                      localStorage.setItem("account_type",response.data.account_type);
+                      localStorage.setItem("user_id",response.data.userId);
+                      console.log(response.data);
+                      navigate("/dashboard");
                     })
                     .catch(error => {
                       notyf.error({
@@ -151,6 +155,13 @@ export default function LogIn() {
                 </form>
               )}
             </Formik>
+            <hr className='my-5' />
+            <div className="text-sm text-center">
+              Don't have an account?{" "}
+              <Link to="/Join" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Join Now
+              </Link>
+            </div>
           </div>
         </div>
       </div >
