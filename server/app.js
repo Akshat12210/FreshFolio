@@ -8,6 +8,10 @@ const jobRoutes = require('./routes/job_post');
 const clientprofile=require('./routes/client_profile');
 const freelancerprofile=require('./routes/freelancer_profile');
 const client_matrix=require('./routes/client_matrix');
+const proposal=require('./routes/proposal');
+const team=require('./routes/team');
+
+
 
 
 
@@ -26,7 +30,9 @@ app.use('/api/user', userRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/client_profile', clientprofile);
 app.use('/api/freelancer_profile', freelancerprofile);
-app.use('/api/client_matrix', client_matrix);
+app.use('/api/proposal', proposal);
+app.use('/api/team', team);
+
 
 
 
