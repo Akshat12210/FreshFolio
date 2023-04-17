@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Profile = require('../models/freelancer');
+const User = require('../models/user');
+
+
 
 // Create a new profile
 router.post('/', async (req, res) => {
@@ -17,6 +20,7 @@ router.post('/', async (req, res) => {
 
       });
       await profile.save();
+      await User.updateOne({_id: userId}, { $set: { profile_created: true } });
       return profile;
     } catch (error) {
       console.log(error);
@@ -32,6 +36,7 @@ router.post('/', async (req, res) => {
     res.status(400).send(error);
   }
 });
+
 
 // Get a profile by ID
 router.get('/:id', async (req, res) => {

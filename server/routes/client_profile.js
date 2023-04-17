@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   const createProfile = async (userId, data) => {
     try {
       const profile = new Profile({
-        user_id: req.body.user_id, // corrected field name
+        user_id: req.body.user_id,
         company_name: req.body.company_name,
         website: req.body.website,
         industry: req.body.industry,
@@ -24,11 +24,13 @@ router.post('/', async (req, res) => {
   const { userId, data } = req.body;
   try {
     const profile = await createProfile(userId, data);
+    await User.findByIdAndUpdate(userId, { profile_created: true });
     res.status(201).send(profile);
   } catch (error) {
     res.status(400).send(error);
   }
 });
+
 
 // Get a profile by ID
 router.get('/:id', async (req, res) => {

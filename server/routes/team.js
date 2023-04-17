@@ -55,37 +55,42 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Add a member to a team by code
+
 router.post('/:id/members', async (req, res) => {
-    const teamId = req.params.id;
-    const userId = req.body.user_id;
-    const code = req.body.code;
-  
-    try {
-      const team = await Team.findById(teamId);
-      if (!team) {
-        return res.status(404).send({ error: 'Team not found!' });
-      }
-  
-      // Check if the provided code matches the team's code
-      if (team.code !== code) {
-        return res.status(400).send({ error: 'Invalid team code!' });
-      }
-  
-      // Check if the user is already a member of the team
-      if (team.members.includes(userId)) {
-        return res.status(400).send({ error: 'User is already a member of the team!' });
-      }
-  
-      // Add the new member to the team and save it
-      team.members.push(userId);
-      await team.save();
-  
-      res.send(team);
-    } catch (error) {
-      res.status(500).send(error);
+  const teamId = req.params.id;
+  const userId = req.body.userd;
+  const code = req.body.code;
+
+  try {
+    const team = await Team.findById(teamId);
+    if (!team) {
+      return res.status(404).send({ error: 'Team not found!' });
     }
-  });
+
+    // Check if the provided code matches the team's code
+    if (team.code !== code) {
+      return res.status(400).send({ error: 'Invalid team code!' });
+    }
+
+    // Check if the user is already a member of the team
+    if (team.members.includes(userId)) {
+      console.log(userId);
+      return res.status(400).send({ error: 'User is already a member of the team!' });
+    }
+
+    // Add the new member to the team and save it
+    team.members.push(userId);
+    await team.save();
+
+    res.send(team);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
   
+
+
 
 // Delete a member from a team by user ID
 router.delete('/:id/members/:user_id', async (req, res) => {
