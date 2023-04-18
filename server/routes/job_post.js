@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Job = require('../models/job');
-
+const Proposal = require('../models/proposal');
 
 router.get('/client/:id/jobs', async (req, res) => {
   const clientId = req.params.id;
