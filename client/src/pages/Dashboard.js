@@ -17,7 +17,7 @@ import { ProfileContext } from '../context/ProfileContext';
 import axios from "axios";
 const Loader = () => {
   return (
-    <ImSpinner2 className='animate-spin w-12 h-12 text-main mx-auto'/>
+    <ImSpinner2 className='animate-spin w-12 h-12 text-main mx-auto' />
   );
 };
 const Dashboard = () => {
@@ -26,10 +26,29 @@ const Dashboard = () => {
   console.log(account_type, user_id)
   const [userDetails, setUserDetails] = useState();
   const [loading, setLoading] = useState(true);
-  const { profile } = useContext(ProfileContext);
+  const { updateProfile, profile } = useContext(ProfileContext);
   console.log(profile)
+
   useEffect(() => {
-   setLoading(false);
+    axios.get('http://localhost:3001/api/' + profile.account_type + '_profile/' + profile._id)
+      .then(response => {
+        console.log("res", response);
+        const data = response.data;
+        updateProfile(data);
+        //   updateProfile({
+        //     "_id": data._id,
+        //     "username": data.username,
+        //     "email": data.email,
+        //     "first_name": data.first_name,
+        //     "last_name": data.last_name,
+        //     "profile_created": data.profile_created,
+        //     "account_type": data.account_type,
+        // })
+      })
+      .catch(error => {
+        console.log(error)
+      });
+    setLoading(false);
   }, []);
 
 

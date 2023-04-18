@@ -28,9 +28,9 @@ router.post('/', async (req, res) => {
     }
   };
 
-  const { userId, data } = req.body;
+  const { user_id, data } = req.body;
   try {
-    const profile = await createProfile(userId, data);
+    const profile = await createProfile(user_id, data);
     res.status(201).send(profile);
   } catch (error) {
     res.status(400).send(error);

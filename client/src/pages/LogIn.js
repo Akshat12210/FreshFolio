@@ -26,22 +26,10 @@ export default function LogIn() {
           "profile_created": data.profile_created,
           "account_type": data.account_type,
         })
+        if(data.profile_created) navigate("/dashboard");
+        else navigate("/profile_creation");
         setprofileDetails(response.data);
         localStorage.setItem("profileDetails", JSON.stringify(response.data));
-        // axios.get('http://localhost:3001/api/' + data.account_type + '_profile/' + user_id)
-        //   .then(response => {
-        //     console.log("res",response);
-        //     const data = response.data;
-        //     //   updateProfile({
-        //     //     "_id": data._id,
-        //     //     "username": data.username,
-        //     //     "email": data.email,
-        //     //     "first_name": data.first_name,
-        //     //     "last_name": data.last_name,
-        //     //     "profile_created": data.profile_created,
-        //     //     "account_type": data.account_type,
-        //     // })
-        //   })
       })
       .catch(error => {
         console.log(error)
@@ -114,13 +102,11 @@ export default function LogIn() {
                       });
                       // if (response.data.account_type == 'freelancer') navigate("/Clientdash");
                       // else navigate("/Clientdash");
-                      getAccountDetails(response.data.userId);
                       localStorage.setItem("account_type", response.data.account_type);
                       localStorage.setItem("user_id", response.data.userId);
                       console.log(response.data);
                       console.log(profileDetails);
-                      if(profileDetails.profile_created) navigate("/dashboard");
-                      else navigate("/profile_creation");
+                      getAccountDetails(response.data.userId);
                     })
                     .catch(error => {
                       console.log(error)

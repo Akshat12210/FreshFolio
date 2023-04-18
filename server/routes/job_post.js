@@ -2,6 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Job = require('../models/job');
 
+
+router.get('/client/:id/jobs', async (req, res) => {
+  const clientId = req.params.id;
+  try {
+    const jobs = await Job.find({ client_id: clientId });
+    res.status(200).send(jobs);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
 // Create a new job
 router.post('/', async (req, res) => {
   try {
@@ -11,9 +23,9 @@ router.post('/', async (req, res) => {
         description:req.body.description ,
         budget: req.body.budget,
         category: req.body.category,
-        deadline: new Date('2023-04-01'),
-        skills_required: ['Some skill', 'Another skill'],
-        status: 'open'
+        deadline: req.body.deadline,
+        skills_required: req.body.skills_required,
+        status: req.body.status || "open",
     });
     await job.save();
     res.status(201).send(job);

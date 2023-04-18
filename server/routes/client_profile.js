@@ -25,10 +25,10 @@ router.post('/', async (req, res) => {
     }
   };
 
-  const { userId, data } = req.body;
+  const { user_id, data } = req.body;
   try {
-    const profile = await createProfile(userId, data);
-    await User.findByIdAndUpdate(userId, { profile_created: true });
+    const profile = await createProfile(user_id, data);
+    await User.findByIdAndUpdate(user_id, { profile_created: true });
     res.status(201).send(profile);
   } catch (error) {
     res.status(400).send(error);
