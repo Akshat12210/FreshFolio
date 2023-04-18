@@ -52,12 +52,14 @@ const jobSchema = new mongoose.Schema({
   }],
   questions: [{
     type: String
-  }]
+  }],
+  proposal_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Proposal',
+    default: null
+  },
 });
-proposals: [{
-  type: mongoose.Schema.Types.ObjectId,
-  ref: 'Proposal'
-}];
+
 
 
 jobSchema.virtual('proposalCount', {

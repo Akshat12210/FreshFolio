@@ -24,6 +24,12 @@ const projectSchema = new mongoose.Schema({
   skills_used: {
     type: [String],
     required: true
+  },
+  accepted_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Freelancer',
+    required :false
+
   }
 });
 
