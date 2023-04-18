@@ -5,7 +5,7 @@ import image2 from "../assets/img/profile/image2.png";
 import image3 from "../assets/img/profile/image3.png";
 import Card from "./card/index";
 
-const Project = () => {
+const Project = ({ profileData }) => {
   return (
     <Card extra={"w-full p-4 h-full"}>
       <div className="mb-8 w-full">
@@ -13,10 +13,11 @@ const Project = () => {
           All projects
         </h4>
         <p className="mt-2 text-base text-gray-600">
-          Here you can find more details about your projects. Keep you user
-          engaged by providing meaningful information.
+          Here you can find more details about your projects.
         </p>
       </div>
+      {profileData.project ? (
+      <>
       {/* Project 1 */}
       <div className="flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500  ">
         <div className="flex items-center">
@@ -92,6 +93,10 @@ const Project = () => {
           <MdModeEditOutline />
         </div>
       </div>
+      </>) : (<>
+          <h1 className="text-center mt-4 font-bold">No Projects</h1>
+        </>) }
+      
     </Card>
   );
 };

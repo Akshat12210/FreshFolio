@@ -16,6 +16,7 @@ import Layout from './shared/Layout';
 import Details from './components/Details';
 import Profile from './pages/Profile';
 import ProfileCreation from './pages/ProfileCreation';
+import Projects from './pages/Project';
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 
@@ -39,7 +40,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="analysis" element={<Clientdash />} />
             <Route path="accounting" element={<Clientdash />} />
-            <Route path="projects" element={<Clientdash />} />
+            <Route path="projects" element={<Projects />} />
             <Route path="messages" element={<Clientdash />} />
           </Route>
           {/* <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} /> */}

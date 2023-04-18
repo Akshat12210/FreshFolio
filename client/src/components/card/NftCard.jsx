@@ -1,8 +1,9 @@
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useState } from "react";
 import Card from "./index";
+import { Link } from 'react-router-dom';
 
-const NftCard = ({ title, author, price, image, bidders, extra }) => {
+const NftCard = ({ title, author, status, price, image, bidders, extra, id }) => {
   const [heart, setHeart] = useState(true);
   return (
     <Card
@@ -36,7 +37,7 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
               {title}{" "}
             </p>
             <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
-              By {author}{" "}
+              Category: {author}{" "}
             </p>
           </div>
 
@@ -60,17 +61,20 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
         </div>
 
         <div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 3xl:items-center 3xl:justify-between">
-          <div className="flex">
+          <div className="flex flex-col">
             <p className="mb-2 text-sm font-bold text-brand-500 ">
-              Current Bid: {price} <span>INR</span>
+              Budget: {price} <span>INR</span>
+            </p>
+            <p className="mb-2 text-sm font-bold text-brand-500 ">
+              Status: {status} 
             </p>
           </div>
-          <button
-            href=""
+          <Link
+            to={`/apply/${id}`}
             className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700   "
           >
             Place Bid
-          </button>
+          </Link>
         </div>
       </div>
     </Card>

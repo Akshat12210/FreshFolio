@@ -28,7 +28,7 @@ const Form = () => {
             </h4>
             <div>
                 <Formik
-                    initialValues={{ coverLetter: '', description: '', submit: '' }}
+                    initialValues={{ coverLetter: '', description: '', submit: '', amount:0, }}
                     validate={values => {
                         const errors = {};
                         if (!values.coverLetter)
@@ -104,6 +104,24 @@ const Form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.description}
+                                />
+                                <input
+                                    className='block border border-grey-light w-full p-3 mb-3 rounded'
+                                    type="number"
+                                    name="amount"
+                                    placeholder='Bid Amount'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.amount}
+                                />
+                                <input
+                                    className='block border border-grey-light w-full p-3 mb-3 rounded'
+                                    type="number"
+                                    name="amount"
+                                    placeholder='Bid Amount'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.amount}
                                 />
                             </div>
                             <div className='col-span-6 lg:!mb-0 text-center'>

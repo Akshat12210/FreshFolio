@@ -146,7 +146,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <Modal />
+          {/* <Modal /> */}
         </>
       }
     </>
