@@ -5,7 +5,7 @@ import TopCreatorTable from './TableTopCreators'
 import TaskCard from './card/TaskCard'
 import ListCard from './card/ListCard'
 const Details = () => {
-    const team = false;
+    const team = true;
     const tableDataTopCreators = [
         {
           "name": [

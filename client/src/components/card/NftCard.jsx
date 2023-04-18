@@ -62,7 +62,7 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
         <div className="flex items-center justify-between md:flex-col md:items-start lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 3xl:items-center 3xl:justify-between">
           <div className="flex">
             <p className="mb-2 text-sm font-bold text-brand-500 ">
-              Current Bid: {price} <span>ETH</span>
+              Current Bid: {price} <span>INR</span>
             </p>
           </div>
           <button

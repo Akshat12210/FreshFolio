@@ -1,12 +1,54 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-import { useEffect } from 'react';
+import { useEffect, useContext, useState } from 'react';
+import { ProfileContext } from '../context/ProfileContext';
 import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import portfolio from '../assets/portfolio.svg'
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { Notyf } from 'notyf';
+
 export default function LogIn() {
+  const { updateProfile } = useContext(ProfileContext);
+  const [profileDetails, setprofileDetails] = useState([]);
+  const getAccountDetails = (user_id) => {
+    let data;
+    axios.get('http://localhost:3001/api/user/' + user_id,)
+      .then(response => {
+        console.log(response);
+        data = response.data;
+        updateProfile({
+          "_id": data._id,
+          "username": data.username,
+          "email": data.email,
+          "first_name": data.first_name,
+          "last_name": data.last_name,
+          "profile_created": data.profile_created,
+          "account_type": data.account_type,
+        })
+        setprofileDetails(response.data);
+        localStorage.setItem("profileDetails", JSON.stringify(response.data));
+        // axios.get('http://localhost:3001/api/' + data.account_type + '_profile/' + user_id)
+        //   .then(response => {
+        //     console.log("res",response);
+        //     const data = response.data;
+        //     //   updateProfile({
+        //     //     "_id": data._id,
+        //     //     "username": data.username,
+        //     //     "email": data.email,
+        //     //     "first_name": data.first_name,
+        //     //     "last_name": data.last_name,
+        //     //     "profile_created": data.profile_created,
+        //     //     "account_type": data.account_type,
+        //     // })
+        //   })
+      })
+      .catch(error => {
+        console.log(error)
+      });
+      return data;
+  }
+
   const navigate = useNavigate();
   const notyf = new Notyf({
     types: [
@@ -72,12 +114,16 @@ export default function LogIn() {
                       });
                       // if (response.data.account_type == 'freelancer') navigate("/Clientdash");
                       // else navigate("/Clientdash");
-                      localStorage.setItem("account_type",response.data.account_type);
-                      localStorage.setItem("user_id",response.data.userId);
+                      getAccountDetails(response.data.userId);
+                      localStorage.setItem("account_type", response.data.account_type);
+                      localStorage.setItem("user_id", response.data.userId);
                       console.log(response.data);
-                      navigate("/dashboard");
+                      console.log(profileDetails);
+                      if(profileDetails.profile_created) navigate("/dashboard");
+                      else navigate("/profile_creation");
                     })
                     .catch(error => {
+                      console.log(error)
                       notyf.error({
                         duration: 2000,
                         dismissible: true,
@@ -85,9 +131,8 @@ export default function LogIn() {
                           x: 'center',
                           y: 'top',
                         },
-                        message: error.response.data.error,
+                        message:  error.response.data.error || "Error",
                       });
-                      console.error(error)
                       resetForm();
                     });
                 }, 400);

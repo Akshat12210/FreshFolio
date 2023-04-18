@@ -20,30 +20,30 @@ const Jobs_Section = () => {
       <div className=" mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
-            title="Abstract Colors"
+            title="Wordpress Website Development"
             author="Esthera Jackson"
-            price="0.91"
+            price="500"
             image={NFt3}
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
-            title="ETH AI Brain"
+            title="MERN App Development"
             author="Nick Wilson"
-            price="0.7"
+            price="1000"
             image={NFt2}
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
-            title="Mesh Gradients"
+            title="Create a Pop Up on my website"
             author="Will Smith"
-            price="2.91"
+            price="400"
             image={NFt4}
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
-            title="Abstract Colors"
-            author="Esthera Jackson"
-            price="0.91"
+            title="E-Commerce Website"
+            author="Ajay Raj"
+            price="10000"
             image={NFt3}
           />
           <NftCard
