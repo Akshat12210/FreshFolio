@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProfileContext } from "../context/ProfileContext";
 import Dropdown from "./dropdown";
 import { FiAlignJustify } from "react-icons/fi";
 import { Link, useNavigate  } from "react-router-dom";
@@ -12,6 +13,7 @@ import {
 } from "react-icons/io";
 // import avatar from "assets/img/avatars/avatar4.png";
 const Navbar = (props) => {
+  const { profile } = useContext(ProfileContext);
   const { onOpenSidenav, brandText } = props;
   const navigate = useNavigate();
   function handleLogout() {
@@ -191,7 +193,7 @@ const Navbar = (props) => {
             <div className="mt-3 ml-4">
               <div className="flex items-center gap-2">
                 <p className="text-sm font-bold text-blue-700 ">
-                  👋 Hey, Adela
+                  👋 Hey, {profile.username}
                 </p>{" "}
               </div>
             </div>

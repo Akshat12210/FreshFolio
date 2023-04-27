@@ -10,7 +10,7 @@ import { Notyf } from 'notyf';
 import { ImSpinner2 } from "react-icons/im";
 import JobCard from '../components/card/JobCard';
 
-const Jobs = () => {
+const Projects = () => {
   const Loader = () => {
     return (
       <ImSpinner2 className='animate-spin w-12 h-12 text-main mx-auto' />
@@ -25,8 +25,7 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true);
   const [jobData, setJobData] = useState();
   useEffect(() => {
-    // http://localhost:3001/api/jobs/client/643e0355e2f27749c942e8f8/jobs
-    axios.get('http://localhost:3001/api/jobs/' + profile.account_type + '/' + profile._id + '/jobs')
+    axios.get('http://localhost:3001/api/jobs')
       .then(response => {
         console.log("res", response);
         const data = response.data;
@@ -46,9 +45,9 @@ const Jobs = () => {
           <div>
             <h1 className='text-xl text-brand-500 font-bold'>Job List</h1>
           </div>
-          <div >
+          {/* <div >
             <button className='linear rounded-[20px] bg-lightPrimary px-4 py-2 text-base font-medium text-brand-500 transition duration-200 hover:bg-gray-100 active:bg-gray-200' onClick={() => setShowModal(true)}>Create Job</button>
-          </div>
+          </div> */}
         </div>
         <div className='pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
           {
@@ -250,4 +249,4 @@ const Jobs = () => {
   )
 }
 
-export default Jobs
+export default Projects

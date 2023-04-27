@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Profile = require('../models/freelancer');
 const User = require('../models/user');
+const FreelancerProfile = require('../models/freelancer');
 
 
 
@@ -28,9 +29,9 @@ router.post('/', async (req, res) => {
     }
   };
 
-  const { userId, data } = req.body;
+  const { user_id, data } = req.body;
   try {
-    const profile = await createProfile(userId, data);
+    const profile = await createProfile(user_id, data);
     res.status(201).send(profile);
   } catch (error) {
     res.status(400).send(error);
@@ -39,15 +40,17 @@ router.post('/', async (req, res) => {
 
 
 // Get a profile by ID
-router.get('/:id', async (req, res) => {
-  const _id = req.params.id;
+router.get('/:user_id', async (req, res) => {
+  const user_id = req.params.user_id;
   try {
-    const profile = await Profile.findById(_id);
-    if (!profile) {
-      return res.status(404).send();
+    const freelancerProfile = await Profile.findOne({user_id});
+    // FreelancerProfile.findOne({ user_id });
+    if (!freelancerProfile) {
+      return res.status(404).send("Profile Does Not Exists");
     }
-    res.send(profile);
+    res.send(freelancerProfile);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });

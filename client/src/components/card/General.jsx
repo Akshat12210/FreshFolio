@@ -1,9 +1,13 @@
 import Card from "./index";
 import React from "react";
 
-const General = () => {
+const General = ({data}) => {
+  // console.log(typeof data.skills_required)
+  console.log(data)
+  const deadline = new Date(data.deadline).toDateString();
+  console.log(deadline)
   return (
-    <Card extra={"w-full h-1/2 p-3"}>
+    <Card extra={"w-full h-full p-3"}>
       {/* Header */}
 
       <div className="w-full mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
@@ -13,11 +17,10 @@ const General = () => {
               General Information
             </h4>
             <p className="mt-2 px-2 text-base text-gray-600">
-              As we live, our hearts turn colder. Cause pain is what we go
-              through as we become older. We get insulted by others, lose trust
-              for those others. We get back stabbed by friends. It becomes
-              harder for us to give others a hand. We get our heart broken by
-              people we love, even that we give them all...
+             Title : {data.title}
+            </p>
+            <p className="mt-2 px-2 text-base text-gray-600">
+             Description : {data.description}
             </p>
           </div>
         </div>
@@ -26,44 +29,44 @@ const General = () => {
           {/* Cards */}
           <div className="grid grid-cols-2 gap-4 px-2">
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Education</p>
+              <p className="text-sm text-gray-600">Budget</p>
               <p className="text-base font-medium text-navy-700 ">
-                Stanford University
+                ₹{data.budget}
               </p>
             </div>
 
             <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Languages</p>
+              <p className="text-sm text-gray-600">Skills</p>
               <p className="text-base font-medium text-navy-700 ">
-                English, Spanish, Italian
+                {data.skills_required}
               </p>
             </div>
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Department</p>
+              <p className="text-sm text-gray-600">Deadline</p>
               <p className="text-base font-medium text-navy-700 ">
-                Product Design
+                {deadline}
               </p>
             </div>
 
             <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Work History</p>
+              <p className="text-sm text-gray-600">Status</p>
               <p className="text-base font-medium text-navy-700 ">
-                English, Spanish, Italian
+                {data.status}
               </p>
             </div>
 
             <div className="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Organization</p>
+              <p className="text-sm text-gray-600">Bids</p>
               <p className="text-base font-medium text-navy-700 ">
-                Simmmple Web LLC
+                {data.bids && data.bids.length}
               </p>
             </div>
 
             <div className="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500  ">
-              <p className="text-sm text-gray-600">Birthday</p>
+              <p className="text-sm text-gray-600">Category</p>
               <p className="text-base font-medium text-navy-700 ">
-                20 July 1986
+                {data.category}
               </p>
             </div>
           </div>

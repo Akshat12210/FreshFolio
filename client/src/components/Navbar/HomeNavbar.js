@@ -63,7 +63,7 @@ const Navbar = ({
         <div className="flex items-center justify-between h-20">
           <div className="md:flex md:items-center md:gap-12">
             <Link href="/">
-              <div className="block text-teal-300 cursor-pointer">
+              <div className="block text-main cursor-pointer">
                 <span className="sr-only">Home</span>
                 {/* <img src="" className="h-10"  alt="" /> */}
                 <svg

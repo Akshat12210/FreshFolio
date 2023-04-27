@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Profile = require('../models/client');
+const User = require('../models/user');
+
 
 // Create a new profile
 router.post('/', async (req, res) => {
+  console.log(req.body)
   const createProfile = async (userId, data) => {
     try {
       const profile = new Profile({
@@ -14,6 +17,7 @@ router.post('/', async (req, res) => {
         location: req.body.location
       });
       await profile.save();
+      await User.updateOne({_id: userId}, { $set: { profile_created: true } });
       return profile;
     } catch (error) {
       console.log(error);
@@ -21,10 +25,10 @@ router.post('/', async (req, res) => {
     }
   };
 
-  const { userId, data } = req.body;
+  const { user_id, data } = req.body;
   try {
-    const profile = await createProfile(userId, data);
-    await User.findByIdAndUpdate(userId, { profile_created: true });
+    const profile = await createProfile(user_id, data);
+    await User.findByIdAndUpdate(user_id, { profile_created: true });
     res.status(201).send(profile);
   } catch (error) {
     res.status(400).send(error);
@@ -33,12 +37,12 @@ router.post('/', async (req, res) => {
 
 
 // Get a profile by ID
-router.get('/:id', async (req, res) => {
-  const _id = req.params.id;
+router.get('/:user_id', async (req, res) => {
+    const user_id = req.params.user_id;
   try {
-    const profile = await Profile.findById(_id);
+    const profile = await Profile.findOne({user_id});
     if (!profile) {
-      return res.status(404).send();
+      return res.status(404).send("Profile Does Not Exists");
     }
     res.send(profile);
   } catch (error) {

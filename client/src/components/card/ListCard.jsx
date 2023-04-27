@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FaEthereum } from "react-icons/fa";
+import { FaRupeeSign } from "react-icons/fa";
 import Card from "./index";
 
 const ListCard = ({ heading, CardData }) => {
@@ -44,16 +44,16 @@ const ListCard = ({ heading, CardData }) => {
 
             <div className="mt-1 flex items-center justify-center text-navy-700 ">
               <div>
-                <FaEthereum />
+                <FaRupeeSign />
               </div>
               <div className="ml-1 flex items-center text-sm font-bold text-navy-700 ">
                 <p> {} </p>
-                {data.price} <p className="ml-1">ETH</p>
+                {data.price} <p className="ml-1">INR</p>
               </div>
-              <div className="ml-2 flex items-center text-sm font-normal text-gray-600 ">
+              {/* <div className="ml-2 flex items-center text-sm font-normal text-gray-600 ">
                 <p>{data.time}</p>
                 <p className="ml-1">ago</p>
-              </div>
+              </div> */}
             </div>
           </div>
         ))
