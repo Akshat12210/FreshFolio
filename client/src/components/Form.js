@@ -28,7 +28,7 @@ const Form = () => {
             </h4>
             <div>
                 <Formik
-                    initialValues={{ coverLetter: '', description: '', submit: '', amount:0, }}
+                    initialValues={{ coverLetter: '', description: '', submit: '', amount:0, delivery_time:0 }}
                     validate={values => {
                         const errors = {};
                         if (!values.coverLetter)
@@ -117,14 +117,14 @@ const Form = () => {
                                 <input
                                     className='block border border-grey-light w-full p-3 mb-3 rounded'
                                     type="number"
-                                    name="amount"
-                                    placeholder='Bid Amount'
+                                    name="delivery_time"
+                                    placeholder='Delivery time in days'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.amount}
+                                    value={values.delivery_time}
                                 />
                             </div>
-                            <div className='col-span-6 lg:!mb-0 text-center'>
+                            <div className='col-span-6 lg:!mb-0 text-center mt-11'>
                                 <button
                                     className="w-1/2 text-center py-3 rounded bg-main text-white hover:bg-indigo-700 focus:outline-none my-4"
                                     type="submit"
