@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const cors = require('cors');
+const dotenv = require('dotenv').config();
 const app = express();
-const url = "mongodb+srv://deeksha:xlwtfH6vU5gIf7Tj@cluster0.3a5fexm.mongodb.net/?retryWrites=true&w=majority";
+const url = process.env.MONGODB_URL;
 const userRoutes = require('./routes/user');
 const jobRoutes = require('./routes/job_post');
 const clientprofile=require('./routes/client_profile');
@@ -44,6 +45,6 @@ app.get('/api/data', (req, res) => {
   res.send(data);
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT, () => {
   console.log('Server started on port 3001');
 });
